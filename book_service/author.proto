@@ -1,0 +1,58 @@
+syntax = "proto3";
+
+option go_package = "./book_service";
+
+
+// The service definition.
+service AuthorService {
+   
+    rpc CreateAuthor (CreateAuthorRequest) returns (Author) {}
+    rpc DeleteAuthor (DeleteAuthorRequest) returns (DeleteAuthorResponse) {}
+    rpc EnabledAuthor (EnabledAuthorRequest) returns (EnabledAuthorResponse) {}
+    rpc GetAuthorList (GetAuthorListRequest) returns (GetAuthorListResponse) {}
+    rpc GetAuthorById (GetAuthorByIDRequest) returns (Author) {} 
+}
+
+// Author ...
+message Author { 
+    string id = 1;
+    string name = 2;
+    string status = 3;
+    string created_at = 4;
+    string updated_at = 5;
+}
+
+message CreateAuthorRequest{
+    string name = 2;
+}
+
+message DeleteAuthorRequest{
+    string id = 1;
+}
+
+message DeleteAuthorResponse{
+    string status = 3;
+}
+
+message EnabledAuthorRequest{
+    string id = 1;
+}
+
+message EnabledAuthorResponse{
+    string status = 3;
+}
+
+message GetAuthorListRequest{
+    int32 offset = 1;
+    int32 limit = 2;
+    string search = 3;
+}
+
+
+message GetAuthorByIDRequest{
+    string id =1;
+}
+
+message GetAuthorListResponse{
+    repeated Author authors = 1;
+}
